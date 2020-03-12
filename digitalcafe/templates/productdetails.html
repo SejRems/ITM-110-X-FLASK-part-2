@@ -1,0 +1,36 @@
+{% include "header.html" %}
+<script language="javascript" type="text/javascript">
+
+  function multiply()
+  {
+      // Get the input values
+      a = Number(document.getElementById('QTY').value);
+      b = Number(document.getElementById('PPRICE').value);
+
+      // Do the multiplication
+      c = a*b;
+
+      // Set the value of the total
+      document.getElementById('TOTAL').value=c;
+  }
+
+
+</script>
+    <h1>Product Details</h1>
+    <table>
+        <tr><td>Code</td><td>{{ code }}</td></tr>
+        <tr><td>Description</td>
+          <td>{{ product["name"]}}</td></tr>
+        <tr><td>Price</td>
+          <td>
+            <input type="text" name="PPRICE" id="PPRICE" value={{ product["price"]}} readonly><br />
+
+        {% if session["user"] is defined %}
+
+                <tr><td colspan=2><br>
+
+<a href="/addtocart?code={{ code }}">Add to Cart</a></td></tr>
+        {% endif %}
+    </table>
+    <a href="/products">Back</a>
+{% include "footer.html" %}
